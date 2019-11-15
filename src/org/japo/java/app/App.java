@@ -16,15 +16,18 @@
 package org.japo.java.app;
 
 //import org.japo.java.main.Main;
+
+import java.util.Random;
+
 /**
  *
  * @author Mario Merlos Abella - mario.merlos.alum@iescamp.es
  */
 public final class App {
 
-    //Datos
-    public static final int N1 = 3;
-    public static final int N2 = 8;
+    //Random
+    private static final Random RND = new Random();
+
 
     //Constantes de Operación
     public static final int OP_SUM = 0;     // Suma 
@@ -34,16 +37,27 @@ public final class App {
     public static final int OP_MOD = 4;     // Resto 
     public static final int OP_MED = 5;     // Media 
     public static final int OP_MAY = 6;     // Mayor 
-    public static final int OP_MEN = 7;     // Menor 
+    public static final int OP_MEN = 7;     // Menor
+
+    //Random range
+    public static final int MAX = 10;
+    public static final int MIN = 0;
+    
+    //Datos
+    public static final int N1;
+    public static final int N2;
+    
+    static{
+    N1 = RND.nextInt(MAX - MIN + 1) + MIN;
+    N2 = RND.nextInt(MAX - MIN + 1) + MIN;
+    }
 
     public final void launchApp() {
         System.out.println("OPERACIÓN NUMÉRICA");
         System.out.println("==================");
-        System.out.printf("Número 1 ....: %d%n"
-                + " Número 2 ....: %d%n"
-                + "---%n",
-                N1, N2, (int) operar(N1, N2, 6));
-
+        System.out.printf("Número 1 ....: %d%n", N1);
+        System.out.printf("Número 2 ....: %d%n", N2);
+        System.out.printf("%d%n", N1, N2, (int) operar(N1, N2, 1));
     }
 
     public static final double operar(double n1, double n2, int op) {
@@ -52,36 +66,38 @@ public final class App {
         switch (op) {
             case OP_SUM:
                 result = n1 + n2;
+                System.out.printf("La Suma es ......: %d", (int)result);
                 break;
-
             case OP_RES:
                 result = n1 - n2;
+                System.out.printf("La Resta es .....: %d", (int)result);
                 break;
-
             case OP_MUL:
                 result = n1 * n2;
+                System.out.printf("El Producto es ..: %d", (int)result);
                 break;
-
             case OP_DIV:
                 result = n1 / n2;
+                System.out.printf("El Cociente es ..: %.2f", result);
                 break;
-
             case OP_MOD:
                 result = n1 % n2;
+                System.out.printf("El Resto es ......: %.2f", result);
                 break;
-
             case OP_MED:
                 result = (n1 + n2) / 2;
+                System.out.printf("La Media es ......: %.2f", result);
                 break;
-
             case OP_MAY:
                 result = n1 > n2 ? n1 : n2;
+                System.out.printf("El Mayor es ......: %d", (int)result);
                 break;
-
             case OP_MEN:
                 result = n1 < n2 ? n1 : n2;
+                System.out.printf("El Menor es ......: %d", (int)result);
                 break;
         }
         return result;
+//        return operacione;
     }
 }
