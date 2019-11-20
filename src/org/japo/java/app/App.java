@@ -15,19 +15,13 @@
  */
 package org.japo.java.app;
 
-import java.util.Locale;
 import java.util.Random;
-import java.util.Scanner;
 
 /**
  *
  * @author Mario Merlos Abella - mario.merlos.alum@iescamp.es
  */
 public final class App {
-
-    public static final Scanner SCN
-            = new Scanner(System.in, "Windows-1252")
-                    .useLocale(Locale.ENGLISH).useDelimiter("\\s+");
 
     //Random
     private static final Random RND = new Random();
