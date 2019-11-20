@@ -15,9 +15,9 @@
  */
 package org.japo.java.app;
 
-//import org.japo.java.main.Main;
-
+import java.util.Locale;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  *
@@ -25,9 +25,12 @@ import java.util.Random;
  */
 public final class App {
 
+    public static final Scanner SCN
+            = new Scanner(System.in, "Windows-1252")
+                    .useLocale(Locale.ENGLISH).useDelimiter("\\s+");
+
     //Random
     private static final Random RND = new Random();
-
 
     //Constantes de Operación
     public static final int OP_SUM = 0;     // Suma 
@@ -42,14 +45,14 @@ public final class App {
     //Random range
     public static final int MAX = 10;
     public static final int MIN = 0;
-    
+
     //Datos
     public static final int N1;
     public static final int N2;
-    
-    static{
-    N1 = RND.nextInt(MAX - MIN + 1) + MIN;
-    N2 = RND.nextInt(MAX - MIN + 1) + MIN;
+
+    static {
+        N1 = RND.nextInt(MAX - MIN + 1) + MIN;
+        N2 = RND.nextInt(MAX - MIN + 1) + MIN;
     }
 
     public final void launchApp() {
@@ -57,47 +60,64 @@ public final class App {
         System.out.println("==================");
         System.out.printf("Número 1 ....: %d%n", N1);
         System.out.printf("Número 2 ....: %d%n", N2);
-        System.out.printf("%d%n", N1, N2, (int) operar(N1, N2, 1));
+        System.out.printf(operar(N1, N2, 0));
     }
 
-    public static final double operar(double n1, double n2, int op) {
+    public static final String operar(double n1, double n2, int op) {
         double result = 0;
+        String cadena = "";
 
         switch (op) {
             case OP_SUM:
                 result = n1 + n2;
-                System.out.printf("La Suma es ......: %d", (int)result);
+                cadena = String.format("La Suma es ......: %d%n",
+                        (int) result);
                 break;
+
             case OP_RES:
                 result = n1 - n2;
-                System.out.printf("La Resta es .....: %d", (int)result);
+                cadena = String.format("La Resta es .....: %d%n",
+                        (int) result);
                 break;
+
             case OP_MUL:
                 result = n1 * n2;
-                System.out.printf("El Producto es ..: %d", (int)result);
+                cadena = String.format("El Producto es ..: %d%n",
+                        (int) result);
                 break;
+
             case OP_DIV:
                 result = n1 / n2;
-                System.out.printf("El Cociente es ..: %.2f", result);
+                cadena = String.format("El Cociente es ..: %.2f%n",
+                        result);
                 break;
+
             case OP_MOD:
                 result = n1 % n2;
-                System.out.printf("El Resto es ......: %.2f", result);
+                cadena = String.format("El Resto es ......: %.2f%n",
+                        result);
                 break;
+
             case OP_MED:
                 result = (n1 + n2) / 2;
-                System.out.printf("La Media es ......: %.2f", result);
+                cadena = String.format("La Media es ......: %.2f%n",
+                        result);
                 break;
+
             case OP_MAY:
                 result = n1 > n2 ? n1 : n2;
-                System.out.printf("El Mayor es ......: %d", (int)result);
+                cadena = String.format("El Mayor es ......: %d%n",
+                        (int) result);
                 break;
+
             case OP_MEN:
                 result = n1 < n2 ? n1 : n2;
-                System.out.printf("El Menor es ......: %d", (int)result);
+                cadena = String.format("El Menor es ......: %d%n",
+                        (int) result);
                 break;
         }
-        return result;
-//        return operacione;
+        return cadena;
+
     }
+
 }
